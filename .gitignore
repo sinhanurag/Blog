@@ -1,6 +1,20 @@
+*.tmp
+*.swp
+*.orig
+**Cssr.java
+target/
+4cc.checksum
+*.log
+*.project
+*.eclipse.*
+*.classpath
+.settings/
+META-INF/
+**Content.java
+jspgen/
+test-output/
 *.class
-
-# Package Files #
-*.jar
-*.war
-*.ear
+app.css
+classes/
+jawr.properties
+/.springBeans
