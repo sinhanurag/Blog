@@ -31,26 +31,32 @@
  		<property name="location" value="/WEB-INF/spring/appServlet/application.properties"/>
     </bean>
 	
-	<bean id = "blogDataSource" 
-				class = "org.apache.commons.dbcp.BasicDataSource"
-				p:driverClassName = "${jdbc.driverClassName}"
-				p:url = "${jdbc.url}"
-				p:username = "${jdbc.username}"
-				p:password = "${jdbc.password}">
+	<bean id = "blogDataSource" class = "org.springframework.jdbc.datasource.DriverManagerDataSource">
+		<property name="driverClassName" value="${jdbc.driverClassName}"/>
+        <property name="url" value="${jdbc.url}"/>       
+        <property name="username" value="${jdbc.username}"/>
+        <property name="password" value="${jdbc.password}"/>
+	
 	</bean>
 
 	<bean id="sessionFactory" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
 	
 		<property name="dataSource" ref="blogDataSource"></property>
 		
-		<property name="hibernateProperties">
+		<property name="annotatedClasses">
+		
+			<list>
+				
+				<value>com.astfnx.Blog.Entities.BlogPostEntity</value>
+		
+			</list>
+		
+		</property>
+		
+		 <property name="hibernateProperties">
 			<props>
 				<prop key="hibernate.dialect">${hibernate.dialect}</prop>
-				<prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
-				<prop key="hibernate.connection.driver_class">${hibernate.connection.driver_class}</prop>
-        		<prop key="hibernate.connection.url">${hibernate.connection.url}</prop>
-        		<prop key="hibernate.connection.username">${hibernate.connection.username}</prop>
-        		<prop key="hibernate.connection.password">${hibernate.connection.password}</prop>
+				 <prop key="hibernate.show_sql">${hibernate.show_sql}</prop>
 			</props>
 		</property>
 	
@@ -59,6 +65,20 @@
 	<bean id="hibernateTransactionManager" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
 		
 		<property name="sessionFactory" ref="sessionFactory"></property>
+	
+	</bean>
+
+	<bean id="blogPostDAO" class="com.astfnx.Blog.DAO.BlogPostDAOImpl"></bean>
+	
+	<bean id="blogPostServiceFacade" class="com.astfnx.Blog.ServiceFacade.BlogPostServiceFacadeImpl">
+	
+		<property name="blogPostDAO" ref="blogPostDAO"></property>
+	
+	</bean>
+
+	<bean id="displayBlogPostController" class="com.astfnx.Blog.Controllers.DisplayBlogPostController">
+	
+		<property name="blogPostServiceFacade" ref="blogPostServiceFacade"></property>
 	
 	</bean>
 </beans>
