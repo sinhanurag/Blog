@@ -10,7 +10,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.astfnx.Blog.Entities.BlogPostEntity;
 import com.astfnx.Blog.ServiceFacade.BlogPostServiceFacade;
-
+import com.astfnx.Blog.ViewModel.BlogPostViewModel;
 
 
 @Controller
@@ -26,8 +26,9 @@ public class DisplayBlogPostController {
 		int postID = Integer.parseInt(postId);
 		BlogPostEntity blogPost = blogPostServiceFacade.getBlogPost(postID);
 		
-		datamodel.addAttribute("serverTime", blogPost.getContent());
+		BlogPostViewModel blogPostViewModel = new BlogPostViewModel(blogPost);
 		
+		datamodel.addAttribute("blogPost",blogPostViewModel);
 		return "home";
 		
 	}
