@@ -81,4 +81,10 @@
 		<property name="blogPostServiceFacade" ref="blogPostServiceFacade"></property>
 	
 	</bean>
+	
+	<bean id="createBlogPostController" class="com.astfnx.Blog.Controllers.CreateBlogPostController">
+	
+		<property name="blogPostServiceFacade" ref="blogPostServiceFacade"></property>
+	
+	</bean>
 </beans>
