@@ -1,5 +1,8 @@
 package com.astfnx.Blog.Controllers;
 
+import java.util.ArrayList;
+import java.util.List;
+
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -9,6 +12,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.astfnx.Blog.Entities.BlogPostEntity;
+import com.astfnx.Blog.Entities.TimeLineEntity;
 import com.astfnx.Blog.ServiceFacade.BlogPostServiceFacade;
 import com.astfnx.Blog.ViewModel.BlogPostViewModel;
 
@@ -25,6 +29,12 @@ public class DisplayBlogPostController {
 		
 		int postID = Integer.parseInt(postId);
 		BlogPostEntity blogPost = blogPostServiceFacade.getBlogPost(postID);
+		
+		List<TimeLineEntity> titlesByYear = new ArrayList<TimeLineEntity> ();
+		
+		titlesByYear = blogPostServiceFacade.getTimeLineByYear(2014);
+
+        logger.info(titlesByYear.toString());
 		
 		BlogPostViewModel blogPostViewModel = new BlogPostViewModel(blogPost);
 		

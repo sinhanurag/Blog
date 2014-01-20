@@ -5,11 +5,11 @@ import com.astfnx.Blog.Entities.BlogPostEntity;
 
 public class BlogPostViewModel extends ModelMap {
 	
-	public static final String POST_ID = "postid";
-	public static final String DATE = "date";
-	public static final String LOCATION = "location";
-	public static final String TEXT_CONTENT = "text";
-	public static final String TITLE = "title";
+	private static final String POST_ID = "postid";
+	private static final String DATE = "date";
+	private static final String LOCATION = "location";
+	private static final String TEXT_CONTENT = "text";
+	private static final String TITLE = "title";
 	
 	public BlogPostViewModel(BlogPostEntity blogPostEntity){
 		

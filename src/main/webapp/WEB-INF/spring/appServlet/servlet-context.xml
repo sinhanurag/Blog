@@ -48,6 +48,7 @@
 			<list>
 				
 				<value>com.astfnx.Blog.Entities.BlogPostEntity</value>
+				<value>com.astfnx.Blog.Entities.TimeLineEntity</value>
 		
 			</list>
 		
@@ -70,9 +71,12 @@
 
 	<bean id="blogPostDAO" class="com.astfnx.Blog.DAO.BlogPostDAOImpl"></bean>
 	
+	<bean id="timeLineDAO" class="com.astfnx.Blog.DAO.TimeLineDAOImpl"></bean>
+	
 	<bean id="blogPostServiceFacade" class="com.astfnx.Blog.ServiceFacade.BlogPostServiceFacadeImpl">
 	
 		<property name="blogPostDAO" ref="blogPostDAO"></property>
+		<property name="timeLineDAO" ref="timeLineDAO"></property>
 	
 	</bean>
 
