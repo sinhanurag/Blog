@@ -1,8 +1,12 @@
 package com.astfnx.Blog.Controllers;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
+import java.util.Map;
 
+import com.astfnx.Blog.ViewModel.TimeLineViewModel;
+import com.astfnx.Blog.logger.BlogLogger;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
@@ -16,39 +20,51 @@ import com.astfnx.Blog.Entities.TimeLineEntity;
 import com.astfnx.Blog.ServiceFacade.BlogPostServiceFacade;
 import com.astfnx.Blog.ViewModel.BlogPostViewModel;
 
+import javax.servlet.http.HttpServletRequest;
+
 
 @Controller
 public class DisplayBlogPostController {
 	
-	private BlogPostServiceFacade blogPostServiceFacade;
-	private static final Logger logger = LoggerFactory.getLogger(DisplayBlogPostController.class);
+	private BlogPostServiceFacade blogPostService;
+
+    @RequestMapping(value="/blogPost/{postId}", method=RequestMethod.GET)
 	
-	@RequestMapping(value="/blogPost/{postId}", method=RequestMethod.GET)
-	
-	public String displayBlogPost(@PathVariable String postId,Model datamodel){
+	public String displayBlogPost(@PathVariable String postId,Model dataModel,HttpServletRequest request){
+
+        BlogLogger.logClientInfo(DisplayBlogPostController.class,request);
 		
 		int postID = Integer.parseInt(postId);
-		BlogPostEntity blogPost = blogPostServiceFacade.getBlogPost(postID);
+		BlogPostEntity blogPost = blogPostService.getBlogPost(postID);
 		
-		List<TimeLineEntity> titlesByYear = new ArrayList<TimeLineEntity> ();
-		
-		titlesByYear = blogPostServiceFacade.getTimeLineByYear(2014);
+		List<TimeLineEntity> timeLineEntityList = blogPostService.getTimeLineByYear(2014);
 
-        logger.info(titlesByYear.toString());
+  		BlogPostViewModel blogPostViewModel = new BlogPostViewModel(blogPost);
+
+        Map<Integer,List<TimeLineViewModel>> timeLinePosts = new HashMap<Integer, List<TimeLineViewModel>>();
+
+        List <TimeLineViewModel> timeLineViewModels = new ArrayList<TimeLineViewModel>();
+
+        for(TimeLineEntity timeLineEntity:timeLineEntityList){
+
+            TimeLineViewModel timeLineViewModel = new TimeLineViewModel(timeLineEntity);
+            timeLineViewModels.add(timeLineViewModel);
+        }
+
+        timeLinePosts.put(Integer.getInteger("2014"),timeLineViewModels);
 		
-		BlogPostViewModel blogPostViewModel = new BlogPostViewModel(blogPost);
-		
-		datamodel.addAttribute("blogPost",blogPostViewModel);
+		dataModel.addAttribute("blogPost",blogPostViewModel);
+        dataModel.addAttribute("timeLine",timeLinePosts);
 		return "home";
 		
 	}
 
-	public BlogPostServiceFacade getBlogPostServiceFacade() {
-		return blogPostServiceFacade;
+	public BlogPostServiceFacade getBlogPostService() {
+		return blogPostService;
 	}
 
-	public void setBlogPostServiceFacade(BlogPostServiceFacade blogPostServiceFacade) {
-		this.blogPostServiceFacade = blogPostServiceFacade;
+	public void setBlogPostService(BlogPostServiceFacade blogPostService) {
+		this.blogPostService = blogPostService;
 	}
 
 }

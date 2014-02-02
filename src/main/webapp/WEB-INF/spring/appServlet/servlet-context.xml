@@ -72,17 +72,26 @@
 	<bean id="blogPostDAO" class="com.astfnx.Blog.DAO.BlogPostDAOImpl"></bean>
 	
 	<bean id="timeLineDAO" class="com.astfnx.Blog.DAO.TimeLineDAOImpl"></bean>
+
+    <bean id="miniBlogPostDAO" class="com.astfnx.Blog.DAO.MiniPostDAOImpl"></bean>
 	
 	<bean id="blogPostServiceFacade" class="com.astfnx.Blog.ServiceFacade.BlogPostServiceFacadeImpl">
 	
 		<property name="blogPostDAO" ref="blogPostDAO"></property>
 		<property name="timeLineDAO" ref="timeLineDAO"></property>
+        <property name="miniPostDAO" ref="miniBlogPostDAO"></property>
 	
 	</bean>
 
+    <bean id="homeController" class="com.astfnx.Blog.Controllers.HomeController">
+
+        <property name="blogPostService" ref="blogPostServiceFacade"></property>
+
+    </bean>
+
 	<bean id="displayBlogPostController" class="com.astfnx.Blog.Controllers.DisplayBlogPostController">
 	
-		<property name="blogPostServiceFacade" ref="blogPostServiceFacade"></property>
+		<property name="blogPostService" ref="blogPostServiceFacade"></property>
 	
 	</bean>
 	

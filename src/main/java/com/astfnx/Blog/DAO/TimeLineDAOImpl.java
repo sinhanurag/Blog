@@ -1,5 +1,7 @@
 package com.astfnx.Blog.DAO;
 
+import com.astfnx.Blog.Entities.TimeLineEntity;
+
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -29,14 +31,14 @@ public class TimeLineDAOImpl implements TimeLineDAO {
 		
 		TimeLineEntity timeLineEntity = new TimeLineEntity();
 		
-		String queryString = "SELECT B.postId, B.date, B.title FROM TimeLineEntity B WHERE B.postId = "+postId;
+		String queryString = "SELECT B FROM TimeLineEntity B WHERE B.postId = "+postId;
 		
 		try {
 			
 			Query queryPostId = sessionFactory.getCurrentSession().createQuery(queryString);
 			timeLineEntity = (TimeLineEntity)queryPostId.uniqueResult();
 			
-			return timeLineEntity;
+
 			
 		}
 		
@@ -83,7 +85,7 @@ public class TimeLineDAOImpl implements TimeLineDAO {
 				titleByYear.add((TimeLineEntity)result);
 			}
 			
-			return titleByYear;
+
 			
 		}
 		

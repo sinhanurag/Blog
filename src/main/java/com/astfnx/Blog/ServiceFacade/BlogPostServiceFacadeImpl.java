@@ -6,6 +6,8 @@ package com.astfnx.Blog.ServiceFacade;
 import java.util.ArrayList;
 import java.util.List;
 
+import com.astfnx.Blog.DAO.MiniPostDAO;
+import com.astfnx.Blog.Entities.MiniBlogPostEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
@@ -23,6 +25,7 @@ public class BlogPostServiceFacadeImpl implements BlogPostServiceFacade {
 
 	private BlogPostDAO blogPostDAO;
 	private TimeLineDAO timeLineDAO;
+    private MiniPostDAO miniPostDAO;
 	
 	@Override
 	@Transactional
@@ -65,6 +68,17 @@ public class BlogPostServiceFacadeImpl implements BlogPostServiceFacade {
 		
 	}
 
+    @Override
+    @Transactional
+    public List<MiniBlogPostEntity> getRecentMiniBlogPosts(int number){
+
+        List<MiniBlogPostEntity> miniBlogPostList = new ArrayList<MiniBlogPostEntity>();
+
+        miniBlogPostList = miniPostDAO.getMiniBlogPostsList(number);
+
+        return miniBlogPostList;
+    }
+
 
 	public BlogPostDAO getBlogPostDAO() {
 		return blogPostDAO;
@@ -84,5 +98,9 @@ public class BlogPostServiceFacadeImpl implements BlogPostServiceFacade {
 	public void setTimeLineDAO(TimeLineDAO timeLineDAO) {
 		this.timeLineDAO = timeLineDAO;
 	}
+
+    public MiniPostDAO getMiniPostDAO(){ return miniPostDAO;}
+
+    public void setMiniPostDAO(MiniPostDAO miniPostDAO){this.miniPostDAO = miniPostDAO;}
 
 }
