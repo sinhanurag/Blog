@@ -32,7 +32,7 @@ public class DisplayBlogPostController {
 	
 	public String displayBlogPost(@PathVariable String postId,Model dataModel,HttpServletRequest request){
 
-        BlogLogger.logClientInfo(DisplayBlogPostController.class,request);
+        //BlogLogger.logInfo(DisplayBlogPostController.class,request);
 		
 		int postID = Integer.parseInt(postId);
 		BlogPostEntity blogPost = blogPostService.getBlogPost(postID);

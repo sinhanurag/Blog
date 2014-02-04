@@ -27,6 +27,7 @@ public class MiniPostDAOImpl implements MiniPostDAO {
     public List<MiniBlogPostEntity> getMiniBlogPostsList(int number) {
 
         int totalRecords = 0;
+        Long total_rec = new Long(0);
         String queryString = new String();
         List<Object> resultSet;
         ArrayList<MiniBlogPostEntity> miniPostList = new ArrayList<MiniBlogPostEntity>();
@@ -36,13 +37,14 @@ public class MiniPostDAOImpl implements MiniPostDAO {
         try{
 
             Query queryNumberOfRecords = sessionFactory.getCurrentSession().createQuery(countRecordsQueryString);
-            totalRecords = (Integer) queryNumberOfRecords.uniqueResult();
-
-        }
+            total_rec = (Long) queryNumberOfRecords.uniqueResult();
+            totalRecords = total_rec.intValue();
+           }
 
         catch(Exception ex){
 
             logger.info("Exception raised while trying to get total records in DataBase");
+            ex.printStackTrace();
 
         }
 
@@ -69,6 +71,7 @@ public class MiniPostDAOImpl implements MiniPostDAO {
 
         catch(Exception ex){
             logger.info("Exception raised while trying to get list of miniBlogPosts");
+            ex.printStackTrace();
         }
 
         return miniPostList;

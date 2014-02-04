@@ -5,6 +5,7 @@ import com.astfnx.Blog.Entities.TimeLineEntity;
 import com.astfnx.Blog.ServiceFacade.BlogPostServiceFacade;
 import com.astfnx.Blog.ViewModel.TimeLineViewModel;
 import com.astfnx.Blog.logger.BlogLogger;
+import com.astfnx.Blog.logger.ClientInfoLog;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,9 +29,13 @@ public class HomeController {
     private BlogPostServiceFacade blogPostService;
 
 	@RequestMapping(value = "/", method = RequestMethod.GET)
-	public String home(HttpServletRequest request,Model dataModel) {
+	public String home(Model dataModel,HttpServletRequest request) {
 
-        BlogLogger.logClientInfo(HomeController.class, request);
+        HttpServletRequest requestObject = (HttpServletRequest) request;
+
+        ClientInfoLog clientInfoLog = new ClientInfoLog(requestObject);
+
+        BlogLogger.logInfo(HomeController.class,clientInfoLog);
 
         List<TimeLineEntity> timeLineEntityList = blogPostService.getTimeLineByYear(2014);
         List<MiniBlogPostEntity> miniBlogPostEntities = blogPostService.getRecentMiniBlogPosts(6);

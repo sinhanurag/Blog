@@ -4,22 +4,32 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
 import javax.servlet.http.HttpServletRequest;
+import java.util.Iterator;
+import java.util.Map;
 
 /**
  * Created by sinhanurag on 2/2/14.
  */
 public class BlogLogger {
 
-    public static void logClientInfo(Class className,HttpServletRequest request){
+    public static void logInfo(Class className,InfoLog infoLog){
 
-        org.slf4j.Logger logger = LoggerFactory.getLogger(className);
+        Logger logger = LoggerFactory.getLogger(className);
 
-        logger.info("Date: ",request.getHeader("Date"));
-        logger.info("User Locale: ",request.getLocale());
-        logger.info("IP Address: ",request.getRemoteAddr());
-        logger.info("User Agent: ",request.getHeader("User-Agent"));
+        Iterator iterator = infoLog.getInfoLogMap().entrySet().iterator();
 
+        while(iterator.hasNext()){
 
-
+            Map.Entry pairs = (Map.Entry)iterator.next();
+            logger.info(pairs.getKey()+" :: "+pairs.getValue());
+            iterator.remove();
+        }
     }
 }
+
+
+
+
+
+
+

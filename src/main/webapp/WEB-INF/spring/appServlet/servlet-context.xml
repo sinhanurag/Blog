@@ -49,6 +49,7 @@
 				
 				<value>com.astfnx.Blog.Entities.BlogPostEntity</value>
 				<value>com.astfnx.Blog.Entities.TimeLineEntity</value>
+                <value>com.astfnx.Blog.Entities.MiniBlogPostEntity</value>
 		
 			</list>
 		
