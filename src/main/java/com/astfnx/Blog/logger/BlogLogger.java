@@ -18,12 +18,16 @@ public class BlogLogger {
 
         Iterator iterator = infoLog.getInfoLogMap().entrySet().iterator();
 
+        logger.info("******************************************");
+
         while(iterator.hasNext()){
 
             Map.Entry pairs = (Map.Entry)iterator.next();
             logger.info(pairs.getKey()+" :: "+pairs.getValue());
             iterator.remove();
         }
+
+        logger.info("******************************************");
     }
 }
 

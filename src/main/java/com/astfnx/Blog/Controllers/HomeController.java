@@ -3,6 +3,7 @@ package com.astfnx.Blog.Controllers;
 import com.astfnx.Blog.Entities.MiniBlogPostEntity;
 import com.astfnx.Blog.Entities.TimeLineEntity;
 import com.astfnx.Blog.ServiceFacade.BlogPostServiceFacade;
+import com.astfnx.Blog.ViewModel.BlogMiniViewModel;
 import com.astfnx.Blog.ViewModel.TimeLineViewModel;
 import com.astfnx.Blog.logger.BlogLogger;
 import com.astfnx.Blog.logger.ClientInfoLog;
@@ -43,6 +44,7 @@ public class HomeController {
         Map<Integer,List<TimeLineViewModel>> timeLinePosts = new HashMap<Integer, List<TimeLineViewModel>>();
 
         List <TimeLineViewModel> timeLineViewModels = new ArrayList<TimeLineViewModel>();
+        List<BlogMiniViewModel> miniPostViewModels = new ArrayList<BlogMiniViewModel>();
 
         for(TimeLineEntity timeLineEntity:timeLineEntityList){
 
@@ -52,8 +54,14 @@ public class HomeController {
 
         timeLinePosts.put(Integer.getInteger("2014"),timeLineViewModels);
 
+        for(MiniBlogPostEntity miniBlogPostEntity:miniBlogPostEntities){
+
+            BlogMiniViewModel blogMiniViewModel = new BlogMiniViewModel(miniBlogPostEntity);
+            miniPostViewModels.add(blogMiniViewModel);
+        }
+
         dataModel.addAttribute("timeLine",timeLinePosts);
-        dataModel.addAttribute("miniPosts", miniBlogPostEntities);
+        dataModel.addAttribute("miniPosts", miniPostViewModels);
 		
 		return "home";
 	}
