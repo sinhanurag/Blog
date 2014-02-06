@@ -37,13 +37,10 @@ public class TimeLineDAOImpl implements TimeLineDAO {
 			
 			Query queryPostId = sessionFactory.getCurrentSession().createQuery(queryString);
 			timeLineEntity = (TimeLineEntity)queryPostId.uniqueResult();
-			
-
-			
 		}
 		
 		catch(Exception ex){
-			logger.info("Excpetion raised while getting Time Line object for postID = "+postId);
+			logger.info("Exception raised while getting Time Line object for postID = "+postId);
 			ex.printStackTrace();
 		}
 		
@@ -51,25 +48,30 @@ public class TimeLineDAOImpl implements TimeLineDAO {
 	}
 
 	@Override
-	public List<TimeLineEntity> getTimeLineEntityListByYear(int year) {
+	public List<TimeLineEntity> getTimeLineEntityListByMonth(Date date) {
 		
 		ArrayList <TimeLineEntity>titleByYear = new ArrayList<TimeLineEntity>();
 		SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
 		
 		List <Object> resultSet;
-		Calendar calendar = Calendar.getInstance();
+
+        Calendar dateExtractor = Calendar.getInstance();
+        dateExtractor.clear();
+
+        dateExtractor.setTime(date);
+
+        Calendar calendar = Calendar.getInstance();
 		calendar.clear();
-		calendar.set(Calendar.MONTH,Calendar.JANUARY);
-		calendar.set(Calendar.YEAR, year);
+        calendar.setTime(date);
+		calendar.set(Calendar.MONTH,dateExtractor.get(Calendar.MONTH));
+		calendar.set(Calendar.YEAR, dateExtractor.get(Calendar.YEAR));
 		calendar.set(Calendar.DATE, 1);
 		
 		Date startDate = calendar.getTime();
 		
 		calendar.clear();
-		
-		calendar.set(Calendar.MONTH,Calendar.DECEMBER);
-		calendar.set(Calendar.YEAR, year);
-		calendar.set(Calendar.DATE,31);
+
+        calendar.set(Calendar.DATE,31);
 		
 		Date endDate = calendar.getTime();
 		
@@ -90,7 +92,7 @@ public class TimeLineDAOImpl implements TimeLineDAO {
 		}
 		
 		catch(Exception ex){
-			logger.info("Excpetion raised while getting Titles for year = "+year);
+			logger.info("Exception raised while getting Titles for Date = "+date.toString());
 			ex.printStackTrace();
 		}
 		

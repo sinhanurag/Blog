@@ -95,6 +95,12 @@
 		<property name="blogPostService" ref="blogPostServiceFacade"></property>
 	
 	</bean>
+
+    <bean id="displayArchiveController" class="com.astfnx.Blog.Controllers.DisplayArchiveController">
+
+        <property name="blogPostService" ref="blogPostServiceFacade"></property>
+
+    </bean>
 	
 	<bean id="createBlogPostController" class="com.astfnx.Blog.Controllers.CreateBlogPostController">
 	

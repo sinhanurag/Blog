@@ -3,6 +3,7 @@ package com.astfnx.Blog.Controllers;
 import com.astfnx.Blog.Entities.MiniBlogPostEntity;
 import com.astfnx.Blog.Entities.TimeLineEntity;
 import com.astfnx.Blog.ServiceFacade.BlogPostServiceFacade;
+import com.astfnx.Blog.ViewModel.ArchiveViewModel;
 import com.astfnx.Blog.ViewModel.BlogMiniViewModel;
 import com.astfnx.Blog.ViewModel.TimeLineViewModel;
 import com.astfnx.Blog.logger.BlogLogger;
@@ -38,21 +39,11 @@ public class HomeController {
 
         BlogLogger.logInfo(HomeController.class,clientInfoLog);
 
-        List<TimeLineEntity> timeLineEntityList = blogPostService.getTimeLineByYear(2014);
+        ArchiveViewModel archiveViewModel = new ArchiveViewModel();
+
         List<MiniBlogPostEntity> miniBlogPostEntities = blogPostService.getRecentMiniBlogPosts(6);
 
-        Map<Integer,List<TimeLineViewModel>> timeLinePosts = new HashMap<Integer, List<TimeLineViewModel>>();
-
-        List <TimeLineViewModel> timeLineViewModels = new ArrayList<TimeLineViewModel>();
         List<BlogMiniViewModel> miniPostViewModels = new ArrayList<BlogMiniViewModel>();
-
-        for(TimeLineEntity timeLineEntity:timeLineEntityList){
-
-            TimeLineViewModel timeLineViewModel = new TimeLineViewModel(timeLineEntity);
-            timeLineViewModels.add(timeLineViewModel);
-        }
-
-        timeLinePosts.put(Integer.getInteger("2014"),timeLineViewModels);
 
         for(MiniBlogPostEntity miniBlogPostEntity:miniBlogPostEntities){
 
@@ -60,7 +51,7 @@ public class HomeController {
             miniPostViewModels.add(blogMiniViewModel);
         }
 
-        dataModel.addAttribute("timeLine",timeLinePosts);
+        dataModel.addAttribute("archive",archiveViewModel);
         dataModel.addAttribute("miniPosts", miniPostViewModels);
 		
 		return "home";

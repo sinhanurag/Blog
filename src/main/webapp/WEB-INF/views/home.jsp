@@ -84,16 +84,14 @@
             </div><!--/row-->
         </div><!--/span-->
 
-        <div class="col-xs-6 col-sm-3 sidebar-offcanvas" id="sidebar" role="navigation">
-            <div class="list-group">
-                <c:forEach items="${timeLine}" var="timeLineEnt">
-                    <c:forEach items="${timeLineEnt.value}" var="post">
-                        <a href="/blogPost/${post.postid}" class="list-group-item">${post.title}</a>
-                    </c:forEach>
-
+        <div class="sidebar-module">
+            <h4>Archives</h4>
+            <ol class="list-unstyled">
+                <c:forEach items="${archive.timeList}" var="time">
+                    <li><a href="/archive/${time}">${time}</a></li>
                 </c:forEach>
-            </div>
-        </div><!--/span-->
+            </ol>
+        </div>
     </div><!--/row-->
 
     <hr>

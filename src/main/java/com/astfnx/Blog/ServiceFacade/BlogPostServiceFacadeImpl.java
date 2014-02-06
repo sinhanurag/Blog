@@ -4,6 +4,7 @@
 package com.astfnx.Blog.ServiceFacade;
 
 import java.util.ArrayList;
+import java.util.Date;
 import java.util.List;
 
 import com.astfnx.Blog.DAO.MiniPostDAO;
@@ -58,11 +59,11 @@ public class BlogPostServiceFacadeImpl implements BlogPostServiceFacade {
 	
 	@Override
 	@Transactional
-	public List<TimeLineEntity> getTimeLineByYear(int year){
+	public List<TimeLineEntity> getTimeLineByMonth(Date date){
 		
 		List<TimeLineEntity> titlesByYear = new ArrayList<TimeLineEntity>();
 		
-		titlesByYear = timeLineDAO.getTimeLineEntityListByYear(year);
+		titlesByYear = timeLineDAO.getTimeLineEntityListByMonth(date);
 		
 		return titlesByYear;
 		

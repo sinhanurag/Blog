@@ -5,6 +5,7 @@ import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
+import com.astfnx.Blog.ViewModel.ArchiveViewModel;
 import com.astfnx.Blog.ViewModel.TimeLineViewModel;
 import com.astfnx.Blog.logger.BlogLogger;
 import org.slf4j.Logger;
@@ -37,25 +38,14 @@ public class DisplayBlogPostController {
 		int postID = Integer.parseInt(postId);
 		BlogPostEntity blogPost = blogPostService.getBlogPost(postID);
 		
-		List<TimeLineEntity> timeLineEntityList = blogPostService.getTimeLineByYear(2014);
+		BlogPostViewModel blogPostViewModel = new BlogPostViewModel(blogPost);
 
-  		BlogPostViewModel blogPostViewModel = new BlogPostViewModel(blogPost);
+        ArchiveViewModel archiveViewModel = new ArchiveViewModel();
 
-        Map<Integer,List<TimeLineViewModel>> timeLinePosts = new HashMap<Integer, List<TimeLineViewModel>>();
 
-        List <TimeLineViewModel> timeLineViewModels = new ArrayList<TimeLineViewModel>();
-
-        for(TimeLineEntity timeLineEntity:timeLineEntityList){
-
-            TimeLineViewModel timeLineViewModel = new TimeLineViewModel(timeLineEntity);
-            timeLineViewModels.add(timeLineViewModel);
-        }
-
-        timeLinePosts.put(Integer.getInteger("2014"),timeLineViewModels);
-		
 		dataModel.addAttribute("blogPost",blogPostViewModel);
-        dataModel.addAttribute("timeLine",timeLinePosts);
-		return "home";
+        dataModel.addAttribute("archive",archiveViewModel);
+		return "blogPost";
 		
 	}
 

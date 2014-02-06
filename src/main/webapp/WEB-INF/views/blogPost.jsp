@@ -40,6 +40,16 @@
 
 <body>
 
+<div id="fb-root"></div>
+<script>(function(d, s, id) {
+    var js, fjs = d.getElementsByTagName(s)[0];
+    if (d.getElementById(id)) return;
+    js = d.createElement(s); js.id = id;
+    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
+    fjs.parentNode.insertBefore(js, fjs);
+}(document, 'script', 'facebook-jssdk'));</script>
+
+
 <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
     <div class="container">
         <div class="navbar-header">
@@ -79,6 +89,8 @@
                 ${blogPost.text}
             </div><!-- /.blog-post -->
 
+            <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+
 
             <ul class="pager">
                 <li><a href="/blogPost/${blogPost.postid}">Previous</a></li>
@@ -95,19 +107,10 @@
             <div class="sidebar-module">
                 <h4>Archives</h4>
                 <ol class="list-unstyled">
-                    <li><a href="#">January 2014</a></li>
-                    <li><a href="#">December 2013</a></li>
-                    <li><a href="#">November 2013</a></li>
-                    <li><a href="#">October 2013</a></li>
-                    <li><a href="#">September 2013</a></li>
-                    <li><a href="#">August 2013</a></li>
-                    <li><a href="#">July 2013</a></li>
-                    <li><a href="#">June 2013</a></li>
-                    <li><a href="#">May 2013</a></li>
-                    <li><a href="#">April 2013</a></li>
-                    <li><a href="#">March 2013</a></li>
-                    <li><a href="#">February 2013</a></li>
-                </ol>
+                    <c:forEach items="${archive.timeList}" var="time">
+                        <li><a href="/archive/${time}">${time}</a></li>
+                    </c:forEach>
+                 </ol>
             </div>
             <div class="sidebar-module">
                 <h4>Elsewhere</h4>
