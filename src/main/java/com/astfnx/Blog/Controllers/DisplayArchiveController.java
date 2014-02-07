@@ -2,6 +2,7 @@ package com.astfnx.Blog.Controllers;
 
 import com.astfnx.Blog.Entities.TimeLineEntity;
 import com.astfnx.Blog.ServiceFacade.BlogPostServiceFacade;
+import com.astfnx.Blog.ViewModel.ArchiveViewModel;
 import com.astfnx.Blog.ViewModel.TimeLineViewModel;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -45,12 +46,16 @@ public class DisplayArchiveController {
 
         List<TimeLineViewModel> timeLineViewModels = new ArrayList<TimeLineViewModel>();
 
+        ArchiveViewModel archiveViewModel = new ArchiveViewModel();
+
         for(TimeLineEntity timeLineEntity : timeLineEntities){
 
             timeLineViewModels.add(new TimeLineViewModel(timeLineEntity));
          }
 
         dataModel.addAttribute("timeLines",timeLineViewModels);
+        dataModel.addAttribute("time",time);
+        dataModel.addAttribute("archive",archiveViewModel);
 
         return "archive";
       }

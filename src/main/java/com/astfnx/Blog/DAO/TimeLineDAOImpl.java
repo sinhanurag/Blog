@@ -68,8 +68,6 @@ public class TimeLineDAOImpl implements TimeLineDAO {
 		calendar.set(Calendar.DATE, 1);
 		
 		Date startDate = calendar.getTime();
-		
-		calendar.clear();
 
         calendar.set(Calendar.DATE,31);
 		
