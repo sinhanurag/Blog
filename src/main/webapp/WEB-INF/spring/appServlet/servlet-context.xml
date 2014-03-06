@@ -87,7 +87,6 @@
     <bean id="homeController" class="com.astfnx.Blog.Controllers.HomeController">
 
         <property name="blogPostService" ref="blogPostServiceFacade"></property>
-
     </bean>
 
 	<bean id="displayBlogPostController" class="com.astfnx.Blog.Controllers.DisplayBlogPostController">
@@ -107,4 +106,25 @@
 		<property name="blogPostServiceFacade" ref="blogPostServiceFacade"></property>
 	
 	</bean>
+
+    <bean id="displayOthersController" class="com.astfnx.Blog.Controllers.DisplayOthersController">
+
+        <property name="populateXMLContent" ref="populateXMLContent"></property>
+
+    </bean>
+
+    <bean id="castorMarshaller" class="org.springframework.oxm.castor.CastorMarshaller">
+
+        <property name="mappingLocation" value="/WEB-INF/spring/appServlet/contentMapper.xml"></property>
+        <property name="targetClass" value="com.astfnx.Blog.Util.content.ContentModel"></property>
+
+    </bean>
+
+
+    <bean id="populateXMLContent" class="com.astfnx.Blog.Util.content.populateXMLContent">
+
+        <property name="unmarshaller" ref="castorMarshaller"></property>
+        <property name="contentFileName" value="${content.contentFile}"></property>
+
+    </bean>
 </beans>

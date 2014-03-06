@@ -1,8 +1,6 @@
-package com.astfnx.Blog.logger;
+package com.astfnx.Blog.Util.logger;
 
 import javax.servlet.http.HttpServletRequest;
-import java.util.Enumeration;
-import java.util.Locale;
 
 /**
  * Created by sinhanurag on 2/4/14.

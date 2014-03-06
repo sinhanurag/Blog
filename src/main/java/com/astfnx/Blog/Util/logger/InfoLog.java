@@ -1,4 +1,4 @@
-package com.astfnx.Blog.logger;
+package com.astfnx.Blog.Util.logger;
 
 import java.util.HashMap;
 import java.util.Map;

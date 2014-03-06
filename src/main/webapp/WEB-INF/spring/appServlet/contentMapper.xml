@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mapping>
+
+    <class name="com.astfnx.Blog.Util.content.ContentModel">
+
+        <map-to xml="ContentModel"/>
+
+            <field name="contentModel" collection="map"
+
+        </class>
+
+</mapping>

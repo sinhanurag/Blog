@@ -22,20 +22,13 @@
 
     <title>Anurag's Corner</title>
 
-    <!-- Bootstrap core CSS -->
-    <link href="<c:url value="/resources/css/bootstrap.min.css"/>" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
+    <link href="<c:url value="/resources/css/bootstrap.min.css"/>" rel="stylesheet">
     <link href="<c:url value="/resources/css/offcanvas.css"/>" rel="stylesheet">
 
-    <!-- Just for debugging purposes. Don't actually copy this line! -->
-    <!--[if lt IE 9]><script src="/resources/assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-
-    <!-- HTML5 shim and Respond.js IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
-    <![endif]-->
+
 </head>
 
 <body>
@@ -53,8 +46,8 @@
         <div class="collapse navbar-collapse">
             <ul class="nav navbar-nav">
                 <li class="active"><a href="/">Home</a></li>
-                <li><a href="#about">About</a></li>
-                <li><a href="#contact">Contact</a></li>
+                <li><a href="/about">About</a></li>
+                <li><a href="/contact">Contact</a></li>
             </ul>
         </div><!-- /.nav-collapse -->
     </div><!-- /.container -->

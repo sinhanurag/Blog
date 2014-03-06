@@ -1,12 +1,11 @@
 <%--
   Created by IntelliJ IDEA.
   User: sinhanurag
-  Date: 2/5/14
-  Time: 8:47 PM
+  Date: 2/7/14
+  Time: 10:06 PM
   To change this template use File | Settings | File Templates.
 --%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <%@ page session="false" %>
 
 <!DOCTYPE html>
@@ -15,17 +14,25 @@
     <meta charset="utf-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="">
-    <meta name="author" content="">
+    <title>Anurag's Corner</title>
+    <meta name="description" content="A blog written by Anurag Sinha. The topics include Technology, Photography, Travel and anything that interests me.I am a Java, Node.JS, C++ and PHP programmer.">
+    <meta name="keywords" content="Anurag Sinha,Technology,Blog,Java,Node.JS,Javascript,PayPal,Photography,Travel,Experiences,Bangalore,India,Hadoop,Big Data,Machine Learning,California,eBay,Spring,Web,Internet programming">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="EN">
+    <meta name="author" content="Anurag Sinha">
+    <meta name="creationdate" content="February 5 2014">
+    <meta name="distribution" content="global">
+    <meta name="rating" content="general">
+    <meta name="generator" content="FreeMetaTagGenerator.com">
+
     <link rel="shortcut icon" href="<c:url value="/resources/assets/ico/favicon.ico"/>">
 
-    <title>${blogPost.title}</title>
+    <title>Anurag's Corner</title>
 
 
     <link href="<c:url value="/resources/css/bootstrap.min.css"/>" rel="stylesheet">
     <link href="<c:url value="/resources/css/blog.css"/>" rel="stylesheet">
     <link href="<c:url value="/resources/css/offcanvas.css"/>" rel="stylesheet">
-
 
     <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
     <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
@@ -33,17 +40,6 @@
 </head>
 
 <body>
-
-<div id="fb-root"></div>
-<script>(function(d, s, id) {
-    var js, fjs = d.getElementsByTagName(s)[0];
-    if (d.getElementById(id)) return;
-    js = d.createElement(s); js.id = id;
-    js.src = "//connect.facebook.net/en_US/all.js#xfbml=1";
-    fjs.parentNode.insertBefore(js, fjs);
-}(document, 'script', 'facebook-jssdk'));</script>
-
-
 <div class="navbar navbar-fixed-top navbar-inverse" role="navigation">
     <div class="container">
         <div class="navbar-header">
@@ -63,7 +59,7 @@
             </ul>
         </div><!-- /.nav-collapse -->
     </div><!-- /.container -->
-</div>
+</div><!-- /.navbar -->
 
 <div class="container">
 
@@ -74,24 +70,17 @@
 
     <div class="row">
 
+
         <div class="col-sm-8 blog-main">
 
-            <div class="blog-post">
-                <h2 class="blog-post-title">${blogPost.title}</h2>
-                <p class="blog-post-meta"><fmt:formatDate value="${blogPost.date}" pattern="EEE, d MMM yyyy" />&nbsp;by &nbsp;<a href="#">Anurag</a></p>
+            <div class="well well-lg">
 
-                ${blogPost.text}
-            </div><!-- /.blog-post -->
+                ${content}
 
-            <div class="fb-like" data-href="https://developers.facebook.com/docs/plugins/" data-layout="standard" data-action="like" data-show-faces="true" data-share="true"></div>
+            </div>
 
 
-            <ul class="pager">
-                <li><a href="/blogPost/${blogPost.postid}">Previous</a></li>
-                <li><a href="/blogPost/${blogPost.postid}">Next</a></li>
-            </ul>
-
-        </div><!-- /.blog-main -->
+        </div>
 
         <div class="col-sm-3 col-sm-offset-1 blog-sidebar">
             <div class="sidebar-module sidebar-module-inset">
@@ -104,7 +93,7 @@
                     <c:forEach items="${archive.timeList}" var="time">
                         <li><a href="/archive/${time}">${time}</a></li>
                     </c:forEach>
-                 </ol>
+                </ol>
             </div>
             <div class="sidebar-module">
                 <h4>Elsewhere</h4>
@@ -116,25 +105,10 @@
             </div>
         </div><!-- /.blog-sidebar -->
 
-    </div><!-- /.row -->
 
-</div><!-- /.container -->
 
-<div class="blog-footer">
-    <p>Anurag's Corner</p>
-    <p>
-        <a href="#">Back to top</a>
-    </p>
+    </div>
+
 </div>
-
-
-<!-- Bootstrap core JavaScript
-================================================== -->
-<!-- Placed at the end of the document so the pages load faster -->
-<script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
-<script src="<c:url value="/resources/js/bootstrap.min.js"/>"></script>
-<script src="<c:url value="/resources/js/offcanvas.js"/>"></script>
-<script src="../../assets/js/docs.min.js"></script>
 </body>
 </html>
-

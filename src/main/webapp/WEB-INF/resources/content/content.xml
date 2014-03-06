@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ContentModel>
+
+        <key>Contact</key>
+        <value>This is where the contact details go</value>
+
+    </ContentModel>
+
+   <ContentModel>
+
+        <key>About</key>
+        <value>This is where the details about me go</value>
+
+    </ContentModel>
+
+    <ContentModel>
+        <key>pageNotFound</key>
+        <value>This is where the pageNotFound message goes</value>
+
+      </ContentModel>
